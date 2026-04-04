@@ -40,16 +40,31 @@ public class Voleibolista extends Atleta implements Evaluable{
 
     @Override
     public double calcularRendimiento() {
-        return 0;
+        return ((saquesEfectivos * 2)*(bloqueos*3));
     }
 
     @Override
     public String clasificarNivel() {
-        return "";
+
+        double rendimiento = calcularRendimiento();
+
+        if (rendimiento < 30) {
+            return "Básico";
+        }
+        else if (rendimiento <= 70) {
+            return "Competente";
+        }
+        else {
+            return "Elite";
+        }
     }
 
     @Override
     public double calcularBono() {
-        return 0;
+        String nivel = clasificarNivel();
+
+        if (nivel.equals("Básico")) return 50000;
+        else if (nivel.equals("Competente")) return 150000;
+        else return 300000;
     }
 }
